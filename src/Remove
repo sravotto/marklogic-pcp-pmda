@@ -1,0 +1,12 @@
+#! /bin/sh
+# Remove the MarkLogic PMDA
+#
+
+. $PCP_DIR/etc/pcp.env
+. $PCP_SHARE_DIR/lib/pmdaproc.sh
+
+iam=marklogic
+
+pmdaSetup
+pmdaRemove
+exit 0

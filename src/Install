@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Install the MarkLogic PMDA
+#
+
+. $PCP_DIR/etc/pcp.env
+. $PCP_SHARE_DIR/lib/pmdaproc.sh
+
+iam=marklogic
+perl_opt=true
+daemon_opt=false
+forced_restart=false
+
+for module in JSON LWP::UserAgent
+do
+    perl -e "use $module" 2>/dev/null 
+    if test $? -ne 0
+    then
+        echo "$module perl module is not installed"
+	exit 1
+    fi
+done
+
+pmdaSetup
+pmdaInstall
+exit 0
